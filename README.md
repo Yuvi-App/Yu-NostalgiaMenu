@@ -7,10 +7,15 @@ Ensure you fill out the games.ini file, the application will read what sections 
 By default the it will launch what you put under DEFAULT GAME after 60 secs.
 
 > [NOSTALGIA Op.1 2017-06-27]
+> 
 > launcher=D:/games/nost1_2017062700/gamestart.bat
     
+    
 > [NOSTALGIA Op.1 2018-06-20]
+> 
 > launcher=D:/games/nost1_2018062002/gamestart.bat
     
+    
 > [DEFAULT GAME]
+> 
 > launcher=D:/games/nost1_081816/gamestart.bat"
