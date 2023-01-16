@@ -6,8 +6,7 @@ Ensure you fill out the games.ini file, the application will read what sections 
 
 By default the it will launch what you put under DEFAULT GAME after 60 secs.
 
-Its best to point the launcher parameter to the games start.bat bootstrap file.
-for nostalgia that would look like below.
+Its best to point the launcher parameter to the games start.bat bootstrap file, for nostalgia that would look like below.
 
 > [NOSTALGIA Op.1 2017-06-27]
 > 
