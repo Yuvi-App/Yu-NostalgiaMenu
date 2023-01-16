@@ -6,16 +6,19 @@ Ensure you fill out the games.ini file, the application will read what sections 
 
 By default the it will launch what you put under DEFAULT GAME after 60 secs.
 
+Its best to point the launcher parameter to theg games start.bat bootstrap file.
+for nostalgia that would look like below
+
 > [NOSTALGIA Op.1 2017-06-27]
 > 
-> launcher=D:/games/nost1_2017062700/gamestart.bat
+> launcher=D:/games/PAN_2017062700/start.bat
     
     
 > [NOSTALGIA Op.1 2018-06-20]
 > 
-> launcher=D:/games/nost1_2018062002/gamestart.bat
+> launcher=D:/games/PAN_2018062002/start.bat
     
     
 > [DEFAULT GAME]
 > 
-> launcher=D:/games/nost1_081816/gamestart.bat"
+> launcher=D:/games/PAN_081816/start.bat"
