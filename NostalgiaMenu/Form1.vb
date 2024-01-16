@@ -69,33 +69,34 @@ ex. [NOSTALGIA Op.1 2017-06-27]
     launcher=D:/games/nost1_2018062002/gamestart.bat
     [DEFAULT GAME]
     launcher=D:/games/nost1_081816/gamestart.bat"
+
             inifile.Sections.Add(
                 New IniSection(inifile, "DEFAULT GAME",
                     New IniKey(inifile, "launcher", "D:/PAN-2021072700/contents/gamestart.bat")
-            ))
-            inifile.Sections.Add(
-                New IniSection(inifile, "Nostalgia Op.1 - 2017062700",
-                    New IniKey(inifile, "launcher", "D:/PAN-2017062700/contents/gamestart.bat")
-            ))
-            inifile.Sections.Add(
-                New IniSection(inifile, "Nostalgia Forte - 2018062002",
-                    New IniKey(inifile, "launcher", "D:/PAN-2018062002/contents/gamestart.bat")
-            ))
-            inifile.Sections.Add(
-                New IniSection(inifile, "Nostalgia Op.2 - 2019112700",
-                    New IniKey(inifile, "launcher", "D:/PAN-2019112700/contents/gamestart.bat")
             ))
             inifile.Sections.Add(
                 New IniSection(inifile, "Nostalgia Op.3 - 2021072700",
                     New IniKey(inifile, "launcher", "D:/PAN-2021072700/contents/gamestart.bat")
             ))
             inifile.Sections.Add(
-                New IniSection(inifile, "BeatStream 1 - 2015121600",
-                    New IniKey(inifile, "launcher", "D:/NBT-2015121600/contents/gamestart.bat")
+                New IniSection(inifile, "Nostalgia Op.2 - 2019112700",
+                    New IniKey(inifile, "launcher", "D:/PAN-2019112700/contents/gamestart.bat")
+            ))
+            inifile.Sections.Add(
+                New IniSection(inifile, "Nostalgia Forte - 2018062002",
+                    New IniKey(inifile, "launcher", "D:/PAN-2018062002/contents/gamestart.bat")
+            ))
+            inifile.Sections.Add(
+                New IniSection(inifile, "Nostalgia Op.1 - 2017062700",
+                    New IniKey(inifile, "launcher", "D:/PAN-2017062700/contents/gamestart.bat")
             ))
             inifile.Sections.Add(
                 New IniSection(inifile, "BeatStream 2 - 2016111400",
                     New IniKey(inifile, "launcher", "D:/NBT-2016111400/contents/gamestart.bat")
+            ))
+            inifile.Sections.Add(
+                New IniSection(inifile, "BeatStream 1 - 2015121600",
+                    New IniKey(inifile, "launcher", "D:/NBT-2015121600/contents/gamestart.bat")
             ))
             inifile.Save(GameConfigPath)
             MessageBox.Show("Created games.ini, Please configure and relaunch.")
@@ -138,8 +139,12 @@ ex. [NOSTALGIA Op.1 2017-06-27]
         For Each G In GameLauncherKVP
             If btn.Name = "dbtn" & G.Key Then
                 'MessageBox.Show(G.Value)
-                Process.Start(G.Value)
-                Application.Exit()
+                Try
+                    Process.Start(G.Value)
+                    Application.Exit()
+                Catch ex As Exception
+                    MessageBox.Show("Invalid launcher path/file not found.")
+                End Try
             End If
         Next
     End Sub
@@ -152,8 +157,14 @@ ex. [NOSTALGIA Op.1 2017-06-27]
 
     Private Sub Countdown_Tick(sender As Object, e As EventArgs) Handles Countdown.Tick
         If DefaultLaunchTime = 0 Then
-            Process.Start(DefaultGamePath)
-            Application.Exit()
+            Try
+                Process.Start(DefaultGamePath)
+                Application.Exit()
+            Catch ex As Exception
+                Countdown.Stop()
+                DefaultLaunchTime = 1
+                MessageBox.Show("Invalid launcher path/file not found.")
+            End Try
         Else
             lblDefaultGame.Text = "Default Game will launch in " & DefaultLaunchTime & "/s"
             DefaultLaunchTime = DefaultLaunchTime - 1
